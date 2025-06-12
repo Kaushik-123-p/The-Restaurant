@@ -8,6 +8,7 @@
       <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">
         Create Account
       </h2>
+
       <form>
         <div class="mb-4">
           <input
@@ -15,6 +16,7 @@
             placeholder="Username"
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             autocomplete="off"
+            v-model="name"
           />
         </div>
         <div class="mb-4">
@@ -23,14 +25,7 @@
             placeholder="Email address"
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             autocomplete="off"
-          />
-        </div>
-        <div class="mb-4">
-          <input
-            type="text"
-            placeholder="Contact Number"
-            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            autocomplete="off"
+            v-model="email"
           />
         </div>
         <div class="mb-4">
@@ -39,19 +34,14 @@
             placeholder="Password (8-16 characters)"
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             autocomplete="new-password"
+            v-model="password"
           />
         </div>
-
-        <div class="my-4">
-          <!-- <p class="text-center font-medium text-sm text-red-500">
-            Validation message here
-          </p> -->
-        </div>
-
         <div>
           <button
             type="button"
             class="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-800 transition duration-300"
+            @click="SighUp"
           >
             Sign Up
           </button>
@@ -67,5 +57,26 @@
 </template>
 
 <script setup>
-// No functionality here as requested
+import { ref } from "vue";
+import axios from "axios";
+
+const name = ref();
+const email = ref();
+const password = ref();
+
+async function SighUp() {
+  console.log("sigh up successfull..", name.value, email.value, password.value);
+
+  const result = await axios.post("http://localhost:3000/users", {
+    name: name.value,
+    email: email.value,
+    password: password.value,
+  });
+  console.log(result.data);
+  if (result.status == 201) {
+    alert("Sigh Up successfully...");
+  }
+
+  localStorage.setItem("user-info", JSON.stringify(result.data));
+}
 </script>

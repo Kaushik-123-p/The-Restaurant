@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "5947",
+      "name": "prajapati",
+      "email": "prajapati123@gmail.com",
+      "password": "prajapati@123"
+    },
+    {
+      "id": "954d",
+      "name": "kk",
+      "email": "kk@12.com",
+      "password": "kk@123"
+    },
+    {
+      "id": "0890",
+      "name": "ege",
+      "email": "ewgre",
+      "password": "wegewg"
+    },
+    {
+      "id": "ee35",
+      "name": "efewe",
+      "email": "jm,j",
+      "password": "jm jm j"
+    },
+    {
+      "id": "f9c5",
+      "name": "dknqwef",
+      "email": "jwebf",
+      "password": "efkjwenbf"
+    },
+    {
+      "id": "00a5",
+      "name": "kaushik1",
+      "email": "kaushik1@gmai.com",
+      "password": "kaushik@1212"
+    }
+  ]
+}
