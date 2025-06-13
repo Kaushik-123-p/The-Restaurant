@@ -50,7 +50,12 @@
 
       <div class="text-center text-sm text-gray-600 mt-4">
         Already have an account?
-        <button class="text-blue-600 font-bold hover:underline">Sign In</button>
+        <button
+          class="text-blue-600 font-bold hover:underline"
+          @click="goToSighIn"
+        >
+          Sign In
+        </button>
       </div>
     </div>
   </div>
@@ -59,24 +64,44 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
+import { onMounted } from "vue";
 
 const name = ref();
 const email = ref();
 const password = ref();
 
+const router = useRouter();
+
 async function SighUp() {
-  console.log("sigh up successfull..", name.value, email.value, password.value);
+  // console.log("sigh up successfull..", name.value, email.value, password.value);
 
-  const result = await axios.post("http://localhost:3000/users", {
-    name: name.value,
-    email: email.value,
-    password: password.value,
-  });
-  console.log(result.data);
-  if (result.status == 201) {
-    alert("Sigh Up successfully...");
+  try {
+    const result = await axios.post("http://localhost:3000/users", {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+    });
+    // console.log(result.data);
+    if (result.status == 201) {
+      // alert("Sigh Up successfully...");
+      localStorage.setItem("user-info", JSON.stringify(result.data));
+      router.push("/");
+    }
+  } catch (error) {
+    console.error("Invalid credentials or network error.p:", error);
   }
+}
 
-  localStorage.setItem("user-info", JSON.stringify(result.data));
+onMounted(() => {
+  // console.log("Mounted...");
+  const user = localStorage.getItem("user-info");
+  if (user) {
+    router.push("/");
+  }
+});
+
+function goToSighIn() {
+  router.push("/sign-in");
 }
 </script>
