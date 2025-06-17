@@ -7,25 +7,18 @@
       "password": "k1@123"
     }
   ],
-
   "restaurants": [
     {
-      "id": "1",
       "name": "Restaurant A",
       "address": "Location A",
-      "contact": "Italian"
+      "contact": "99999",
+      "id": "1"
     },
     {
-      "id": "2",
       "name": "Restaurant B",
       "address": "Location B",
-      "contact": "Chinese"
-    },
-    {
-      "id": "3",
-      "name": "Restaurant C",
-      "address": "Location C",
-      "contact": "Mexican"
+      "contact": "88888",
+      "id": "2"
     }
   ]
 }

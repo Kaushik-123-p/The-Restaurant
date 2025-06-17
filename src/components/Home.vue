@@ -12,21 +12,24 @@
           class="min-w-full border border-gray-200 divide-y divide-gray-200"
         >
           <thead class="bg-gray-100">
-            <tr>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <tr class="">
+              <th class="px-4 py-2 text-left text-sm font-bold text-gray-600">
                 ID
               </th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+              <th class="px-4 py-2 text-left text-sm font-bold text-gray-600">
                 Name
               </th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+              <th class="px-4 py-2 text-left text-sm font-bold text-gray-600">
                 Address
               </th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+              <th class="px-4 py-2 text-left text-sm font-bold text-gray-600">
                 Contact
               </th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
-                Actions
+              <th class="px-4 py-2 text-left text-sm font-bold text-gray-600">
+                Update
+              </th>
+              <th class="px-4 py-2 text-left text-sm font-bold text-gray-600">
+                Delete
               </th>
             </tr>
           </thead>
@@ -51,6 +54,14 @@
                   >update</router-link
                 >
               </td>
+              <td>
+                <button
+                  @click="deleteRRestaurant(item.id)"
+                  class="px-4 py-2 text-sm text-gray-700"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -70,7 +81,7 @@ const router = useRouter();
 const userName = ref("");
 const restaurants = ref([]);
 
-onMounted(async () => {
+async function loadData(params) {
   const user = localStorage.getItem("user-info");
   if (!user) {
     router.push("/sign-in");
@@ -85,5 +96,17 @@ onMounted(async () => {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
+}
+
+onMounted(() => {
+  loadData();
 });
+
+async function deleteRRestaurant(id) {
+  const result = await axios.delete("http://localhost:3000/restaurants/" + id);
+  // console.log(result);
+  if (result.status == 200) {
+    loadData();
+  }
+}
 </script>

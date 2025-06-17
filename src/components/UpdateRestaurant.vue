@@ -76,7 +76,6 @@ const address = ref("");
 const contact = ref("");
 
 onMounted(async () => {
-  // console.log("Mounted...");
   const user = localStorage.getItem("user-info");
   if (!user) {
     router.push("/sign-in");
@@ -85,14 +84,23 @@ onMounted(async () => {
   const result = await axios.get(
     "http://localhost:3000/restaurants/" + route.params.id
   );
-  // console.log(result.data);
-  // console.log(route.params.id);
   name.value = result.data.name;
   address.value = result.data.address;
   contact.value = result.data.contact;
 });
 
-function updateRestaurant() {
-  console.log(name.value, address.value, contact.value);
+async function updateRestaurant() {
+  const result = await axios.put(
+    "http://localhost:3000/restaurants/" + route.params.id,
+    {
+      name: name.value,
+      address: address.value,
+      contact: contact.value,
+    }
+  );
+
+  if (result.status == 200) {
+    router.push("/");
+  }
 }
 </script>

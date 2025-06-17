@@ -66,6 +66,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import Header from "./Header.vue";
+import axios from "axios";
 
 const router = useRouter();
 
@@ -74,14 +75,25 @@ const address = ref("");
 const contact = ref("");
 
 onMounted(() => {
-  // console.log("Mounted...");
   const user = localStorage.getItem("user-info");
   if (!user) {
     router.push("/sign-in");
   }
 });
 
-function addRestaurant() {
-  console.log(name.value, address.value, contact.value);
+async function addRestaurant() {
+  const result = await axios.post("http://localhost:3000/restaurants", {
+    name: name.value,
+    address: address.value,
+    contact: contact.value,
+  });
+  name.value = result.data.name;
+  address.value = result.data.address;
+  contact.value = result.data.contact;
+
+  if (result.status == 201) {
+    router.push("/");
+  }
+  console.log("result", result);
 }
 </script>
