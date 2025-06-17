@@ -5,9 +5,27 @@
       "name": "k1",
       "email": "k1@gmail.com",
       "password": "k1@123"
+    }
+  ],
+
+  "restaurants": [
+    {
+      "id": "r1",
+      "name": "Restaurant A",
+      "address": "Location A",
+      "contact": "Italian"
     },
     {
-      "id": "f32d"
+      "id": "r2",
+      "name": "Restaurant B",
+      "address": "Location B",
+      "contact": "Chinese"
+    },
+    {
+      "id": "r3",
+      "name": "Restaurant C",
+      "address": "Location C",
+      "contact": "Mexican"
     }
   ]
 }
