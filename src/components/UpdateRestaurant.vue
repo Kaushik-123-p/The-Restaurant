@@ -64,21 +64,32 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import Header from "./Header.vue";
+import axios from "axios";
 
 const router = useRouter();
+const route = useRoute();
 
 const name = ref("");
 const address = ref("");
 const contact = ref("");
 
-onMounted(() => {
+onMounted(async () => {
   // console.log("Mounted...");
   const user = localStorage.getItem("user-info");
   if (!user) {
     router.push("/sign-in");
   }
+
+  const result = await axios.get(
+    "http://localhost:3000/restaurants/" + route.params.id
+  );
+  // console.log(result.data);
+  // console.log(route.params.id);
+  name.value = result.data.name;
+  address.value = result.data.address;
+  contact.value = result.data.contact;
 });
 
 function updateRestaurant() {
