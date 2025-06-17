@@ -10,19 +10,19 @@
 
   "restaurants": [
     {
-      "id": "r1",
+      "id": "1",
       "name": "Restaurant A",
       "address": "Location A",
       "contact": "Italian"
     },
     {
-      "id": "r2",
+      "id": "2",
       "name": "Restaurant B",
       "address": "Location B",
       "contact": "Chinese"
     },
     {
-      "id": "r3",
+      "id": "3",
       "name": "Restaurant C",
       "address": "Location C",
       "contact": "Mexican"

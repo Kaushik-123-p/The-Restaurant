@@ -25,6 +25,9 @@
               <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
                 Contact
               </th>
+              <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-100">
@@ -40,6 +43,13 @@
               </td>
               <td class="px-4 py-2 text-sm text-gray-700">
                 {{ item.contact }}
+              </td>
+              <td>
+                <router-link
+                  :to="'/update-restaurant/' + item.id"
+                  class="px-4 py-2 text-sm text-gray-700"
+                  >update</router-link
+                >
               </td>
             </tr>
           </tbody>

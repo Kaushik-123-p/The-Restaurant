@@ -18,13 +18,13 @@
         >
           Add Restaurant
         </router-link>
-        <router-link
+        <!-- <router-link
           to="/update-restaurant"
           class="hover:text-green-600 transition"
           active-class="font-semibold text-green-500"
         >
           Update Restaurant
-        </router-link>
+        </router-link> -->
         <button @click="logout" class="hover:text-red-500 transition">
           Logout
         </button>
